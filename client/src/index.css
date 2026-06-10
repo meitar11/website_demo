@@ -294,3 +294,70 @@ a {
   color: var(--muted);
   font-size: 0.9rem;
 }
+
+/* Contact form */
+.contact__intro,
+.stats__intro {
+  color: var(--muted);
+}
+
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 32rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field > span {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.field .input {
+  width: 100%;
+}
+
+.field__error {
+  color: var(--danger);
+  font-size: 0.8rem;
+}
+
+/* Stats */
+.chart {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.stats__table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.stats__table th,
+.stats__table td {
+  text-align: left;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.stats__table th {
+  background: #f3f4f6;
+  font-size: 0.85rem;
+}
+
+.stats__table tr:last-child td {
+  border-bottom: none;
+}

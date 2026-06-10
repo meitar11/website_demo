@@ -51,4 +51,27 @@ describe('Product routes', () => {
     expect(res.status).toBe(200);
     expect(res.body.product.id).toBe(id);
   });
+
+  it('GET /api/products/slug/:slug returns a product by slug', async () => {
+    const list = await request(app).get('/api/products');
+    const { slug } = list.body.products[0];
+    expect(typeof slug).toBe('string');
+    const res = await request(app).get(`/api/products/slug/${slug}`);
+    expect(res.status).toBe(200);
+    expect(res.body.product.slug).toBe(slug);
+  });
+
+  it('GET /api/products/slug/:slug returns 404 for an unknown slug', async () => {
+    const res = await request(app).get('/api/products/slug/nope-not-real');
+    expect(res.status).toBe(404);
+  });
+
+  it('GET /api/products/stats returns per-category statistics', async () => {
+    const res = await request(app).get('/api/products/stats');
+    expect(res.status).toBe(200);
+    expect(Array.isArray(res.body.stats)).toBe(true);
+    expect(res.body.stats[0]).toHaveProperty('category');
+    expect(res.body.stats[0]).toHaveProperty('count');
+    expect(res.body.stats[0]).toHaveProperty('averagePrice');
+  });
 });

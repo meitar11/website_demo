@@ -24,3 +24,13 @@ export async function fetchProduct(id) {
   const { data } = await api.get(`/products/${id}`);
   return data.product;
 }
+
+export async function fetchProductStats() {
+  const { data } = await api.get('/products/stats');
+  return data.stats;
+}
+
+export async function sendContactMessage(payload) {
+  const { data } = await api.post('/contact', payload);
+  return data;
+}

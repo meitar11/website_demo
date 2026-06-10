@@ -7,6 +7,32 @@ const { authenticate } = require('../middleware/auth');
 
 const router = express.Router();
 
+/**
+ * @openapi
+ * /auth/register:
+ *   post:
+ *     summary: Register a new user
+ *     tags: [Auth]
+ *     responses:
+ *       201: { description: User created, returns a JWT }
+ *       409: { description: Email already registered }
+ *       422: { description: Validation error }
+ * /auth/login:
+ *   post:
+ *     summary: Log in and receive a JWT
+ *     tags: [Auth]
+ *     responses:
+ *       200: { description: Authenticated, returns a JWT }
+ *       401: { description: Invalid credentials }
+ * /auth/me:
+ *   get:
+ *     summary: Get the current authenticated user
+ *     tags: [Auth]
+ *     security: [{ bearerAuth: [] }]
+ *     responses:
+ *       200: { description: The current user }
+ *       401: { description: Missing or invalid token }
+ */
 router.post(
   '/register',
   [
