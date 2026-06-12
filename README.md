@@ -95,6 +95,17 @@ To wire in a scanner, replace the placeholder step in the `security-scan` job:
   run: npx your-malware-scanner scan ./node_modules
 ```
 
+## Security fixtures (inert)
+
+`security-fixtures/` contains **deliberately suspicious but completely inert**
+samples used to verify the malware scanner actually fires — the EICAR-test-file
+approach. They cover obfuscated `eval`, credential harvesting, reverse shells,
+crypto-miner droppers, and a typosquat-style package with malicious install
+hooks. Every sample is guarded so it does nothing, points only at
+`example.com`/`.invalid`, and the suspicious package is never installed. These
+files are excluded from ESLint/Prettier/tests so normal CI stays green. See
+[security-fixtures/README.md](security-fixtures/README.md).
+
 ## License
 
 MIT
