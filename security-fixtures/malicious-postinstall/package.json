@@ -1,0 +1,9 @@
+{
+  "name": "color-parser-utils",
+  "version": "2.3.1",
+  "description": "Color parsing helpers.",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "node index.js"
+  }
+}
