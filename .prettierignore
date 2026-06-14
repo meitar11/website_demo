@@ -4,3 +4,6 @@ build/
 coverage/
 client/dist/
 package-lock.json
+
+# Inert malware test fixtures — kept verbatim for the security scanner.
+security-fixtures/

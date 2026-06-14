@@ -95,6 +95,12 @@ To wire in a scanner, replace the placeholder step in the `security-scan` job:
   run: npx your-malware-scanner scan ./node_modules
 ```
 
+## Security fixtures
+
+`security-fixtures/` holds standalone code samples used to exercise the
+dependency/malware scanner. They are excluded from ESLint, Prettier, and the
+test globs so the normal lint/test/build CI stays green.
+
 ## License
 
 MIT

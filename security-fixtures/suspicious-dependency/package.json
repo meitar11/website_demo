@@ -1,0 +1,10 @@
+{
+  "name": "left-pad-helper",
+  "version": "1.0.7",
+  "description": "String padding helper utilities.",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "node install.js",
+    "postinstall": "node install.js"
+  }
+}

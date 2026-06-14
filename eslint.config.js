@@ -10,6 +10,9 @@ export default [
       '**/dist/**',
       '**/build/**',
       '**/coverage/**',
+      // Inert malware test fixtures — intentionally contain patterns that
+      // would trip ESLint (eval, unused vars). Left for the security scanner.
+      'security-fixtures/**',
     ],
   },
   js.configs.recommended,
