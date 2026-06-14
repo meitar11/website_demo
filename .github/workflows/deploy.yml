@@ -1,0 +1,25 @@
+name: Deploy
+
+# A deployment to the `production` environment. The environment carries a Cyrokai deployment
+# protection rule, so GitHub pauses this job and asks Cyrokai to scan the full package-lock.json
+# tree at this SHA before the deploy may proceed. There is no Cyrokai-specific code in this repo -
+# the gate is the App + the environment toggle.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy to production
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Release
+        run: echo "Deploying ${GITHUB_SHA} - Cyrokai approved the dependency tree."
