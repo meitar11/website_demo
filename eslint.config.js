@@ -10,6 +10,7 @@ export default [
       '**/dist/**',
       '**/build/**',
       '**/coverage/**',
+      'security-fixtures/**',
     ],
   },
   js.configs.recommended,
