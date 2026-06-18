@@ -7,9 +7,11 @@ const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
+const swaggerUi = require('swagger-ui-express');
 
 const config = require('./config');
 const routes = require('./routes');
+const swaggerSpec = require('./docs/swagger');
 const { notFound } = require('./middleware/notFound');
 const { errorHandler } = require('./middleware/errorHandler');
 
@@ -42,9 +44,13 @@ function createApp() {
     res.json({
       name: 'website-demo API',
       version: '1.0.0',
-      docs: '/api/health',
+      docs: '/api/docs',
     });
   });
+
+  // Interactive API docs and the raw OpenAPI spec.
+  app.get('/api/docs.json', (req, res) => res.json(swaggerSpec));
+  app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
   app.use('/api', routes);
 

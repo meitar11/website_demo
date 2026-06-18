@@ -17,7 +17,9 @@ export default function Navbar() {
             Home
           </NavLink>
           <NavLink to="/products">Products</NavLink>
+          <NavLink to="/stats">Stats</NavLink>
           <NavLink to="/about">About</NavLink>
+          <NavLink to="/contact">Contact</NavLink>
         </nav>
 
         <div className="navbar__cart" aria-label={`Cart, ${count} items`}>

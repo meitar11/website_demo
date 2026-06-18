@@ -18,11 +18,11 @@ target for a **CI pipeline** and for **dependency / malware scanning**.
 
 ## Tech stack
 
-| Layer   | Packages                                                                                                                                                            |
-| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Server  | express, helmet, cors, compression, morgan, express-rate-limit, express-validator, jsonwebtoken, bcryptjs, joi, winston, dayjs, lodash, uuid, dotenv, cookie-parser |
-| Client  | react, react-dom, react-router-dom, @tanstack/react-query, zustand, axios, classnames, react-icons, dayjs                                                           |
-| Tooling | eslint, prettier, jest, supertest, vitest, @testing-library/react, vite, nodemon                                                                                    |
+| Layer   | Packages                                                                                                                                                                                                                           |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Server  | express, helmet, cors, compression, morgan, express-rate-limit, express-validator, jsonwebtoken, bcryptjs, joi, winston, dayjs, lodash, uuid, dotenv, cookie-parser, slugify, http-status-codes, swagger-jsdoc, swagger-ui-express |
+| Client  | react, react-dom, react-router-dom, @tanstack/react-query, zustand, axios, classnames, react-icons, dayjs, react-hook-form, zod, @hookform/resolvers, react-hot-toast, recharts                                                    |
+| Tooling | eslint, prettier, jest, supertest, vitest, @testing-library/react, vite, nodemon                                                                                                                                                   |
 
 ## Requirements
 
@@ -58,12 +58,19 @@ npm run dev:client   # Vite dev server on http://localhost:5173
 | GET    | `/api/health`              | Health check                                 |
 | GET    | `/api/products`            | List products (`category`, `search` filters) |
 | GET    | `/api/products/categories` | List product categories                      |
+| GET    | `/api/products/stats`      | Product count & average price per category   |
+| GET    | `/api/products/slug/:slug` | Get a product by its slug                    |
 | GET    | `/api/products/:id`        | Get a single product                         |
 | POST   | `/api/auth/register`       | Register a new user                          |
 | POST   | `/api/auth/login`          | Log in, returns a JWT                        |
 | GET    | `/api/auth/me`             | Current user (requires Bearer token)         |
+| POST   | `/api/contact`             | Submit a contact message                     |
+| GET    | `/api/docs`                | Interactive Swagger UI                       |
+| GET    | `/api/docs.json`           | Raw OpenAPI 3 spec                           |
 
 A seeded demo user is available: `demo@example.com` / `Password123!`.
+
+Interactive API docs are served at <http://localhost:4000/api/docs> (Swagger UI).
 
 ## Scripts
 
