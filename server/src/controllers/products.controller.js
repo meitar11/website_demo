@@ -20,4 +20,14 @@ function getCategories(req, res) {
   res.json({ categories: store.listCategories() });
 }
 
-module.exports = { getProducts, getProductById, getCategories };
+function getFeatured(req, res) {
+  const limit = Math.min(parseInt(req.query.limit, 10) || 3, 10);
+  const products = store
+    .listProducts()
+    .filter((p) => p.inStock)
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, limit);
+  res.json({ count: products.length, products });
+}
+
+module.exports = { getProducts, getProductById, getCategories, getFeatured };
