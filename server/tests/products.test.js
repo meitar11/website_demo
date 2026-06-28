@@ -51,4 +51,15 @@ describe('Product routes', () => {
     expect(res.status).toBe(200);
     expect(res.body.product.id).toBe(id);
   });
+
+  it('GET /api/products/featured returns top-rated in-stock products', async () => {
+    const res = await request(app)
+      .get('/api/products/featured')
+      .query({ limit: 2 });
+    expect(res.status).toBe(200);
+    expect(res.body.products.length).toBeLessThanOrEqual(2);
+    expect(res.body.products.every((p) => p.inStock)).toBe(true);
+    const ratings = res.body.products.map((p) => p.rating);
+    expect(ratings).toEqual([...ratings].sort((a, b) => b - a));
+  });
 });
