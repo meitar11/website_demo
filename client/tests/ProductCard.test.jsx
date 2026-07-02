@@ -12,6 +12,7 @@ const product = {
   rating: 4.6,
   inStock: true,
   description: 'Over-ear headphones with active noise cancellation.',
+  image: 'https://example.com/products/aurora-headphones.jpg',
 };
 
 describe('ProductCard', () => {
@@ -24,6 +25,15 @@ describe('ProductCard', () => {
     expect(screen.getByText('Aurora Wireless Headphones')).toBeInTheDocument();
     expect(screen.getByText('$129.99')).toBeInTheDocument();
     expect(screen.getByText('In stock')).toBeInTheDocument();
+  });
+
+  it('renders the product image from its CDN url', () => {
+    render(<ProductCard product={product} />);
+    const img = screen.getByRole('img', { name: 'Aurora Wireless Headphones' });
+    expect(img).toHaveAttribute(
+      'src',
+      'https://example.com/products/aurora-headphones.jpg'
+    );
   });
 
   it('adds the product to the cart when clicked', async () => {
