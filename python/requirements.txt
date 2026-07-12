@@ -1,0 +1,9 @@
+# Runtime dependencies for the recommendations microservice.
+# All are popular, legitimate PyPI packages — this file is what a
+# dependency scanner reads to build the Python side of the dep tree.
+fastapi==0.115.6
+uvicorn==0.34.0
+pydantic==2.10.4
+requests==2.32.3
+python-dateutil==2.9.0.post0
+httpx==0.28.1
