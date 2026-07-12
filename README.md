@@ -10,8 +10,10 @@ target for a **CI pipeline** and for **dependency / malware scanning**.
   rate limiting, JWT auth, validation, and structured logging.
 - **`client/`** — React + Vite single-page storefront with React Router,
   TanStack Query, Zustand, and Axios.
-- **`.github/workflows/ci.yml`** — GitHub Actions pipeline: lint, test, build,
-  and a dedicated dependency/malware-scan job.
+- **`python/`** — FastAPI recommendations microservice (pytest suite) plus
+  `python/samples/`, inert malware-scanner test fixtures for the Python side.
+- **`.github/workflows/ci.yml`** — GitHub Actions pipeline: lint, test (Node +
+  Python), build, and a dedicated dependency/malware-scan job.
 
 > Everything here is a self-contained demo. The in-memory data store keeps the
 > project dependency-free at runtime so CI can run anywhere.
@@ -22,7 +24,8 @@ target for a **CI pipeline** and for **dependency / malware scanning**.
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Server  | express, helmet, cors, compression, morgan, express-rate-limit, express-validator, jsonwebtoken, bcryptjs, joi, winston, dayjs, lodash, uuid, dotenv, cookie-parser |
 | Client  | react, react-dom, react-router-dom, @tanstack/react-query, zustand, axios, classnames, react-icons, dayjs                                                           |
-| Tooling | eslint, prettier, jest, supertest, vitest, @testing-library/react, vite, nodemon                                                                                    |
+| Python  | fastapi, uvicorn, pydantic, requests, python-dateutil, httpx                                                                                                        |
+| Tooling | eslint, prettier, jest, supertest, vitest, @testing-library/react, vite, nodemon, pytest, pytest-cov                                                                |
 
 ## Requirements
 
@@ -49,6 +52,16 @@ The Vite dev server proxies `/api` to the Express server on port `4000`.
 ```bash
 npm run dev:server   # Express API on http://localhost:4000
 npm run dev:client   # Vite dev server on http://localhost:5173
+```
+
+### Python recommendations service
+
+```bash
+cd python
+python3.12 -m venv .venv && source .venv/bin/activate
+pip install -r requirements-dev.txt
+uvicorn app.main:app --reload --port 8000   # http://localhost:8000/health
+pytest -q                                    # run the test suite
 ```
 
 ## API overview

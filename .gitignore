@@ -3,6 +3,15 @@ node_modules/
 .pnp
 .pnp.js
 
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.venv-demo/
+venv/
+.pytest_cache/
+.mypy_cache/
+
 # Build output
 dist/
 build/
