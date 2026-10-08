@@ -8,6 +8,14 @@ export default function ProductCard({ product }) {
 
   return (
     <article className="product-card">
+      {product.image && (
+        <img
+          className="product-card__image"
+          src={product.image}
+          alt={product.name}
+          loading="lazy"
+        />
+      )}
       <div className="product-card__body">
         <span className="product-card__category">
           {titleCase(product.category)}
