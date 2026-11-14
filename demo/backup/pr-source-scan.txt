@@ -1,0 +1,6 @@
+Blocked: 1 malicious source finding
+| File | Severity | Detail |
+|---|---|---|
+| `server/src/utils/telemetry.ts` | ❌ MALICIOUS | The package includes a telemetry module that reads sensitive data from a local credentials file and environment variables, encodes the data using base64, and exfiltrates it to an external server via an HTTP request. Confirmed on second review: The package executes credential-stealing behavior immediately upon import, reading local credential files and environment tokens, encoding them in base64, and exfiltrating them to an external server. in server/src/utils/telemetry.ts |
+
+**Result: ❌ BLOCKED** - malicious code was found in this PR's new source. This check fails, and the merge is blocked wherever it is set as a required check. ([open the GitHub Advisory page](https://platform.hour0.ai/advisory))

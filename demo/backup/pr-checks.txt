@@ -1,3 +1,6 @@
+NOTE (2026-11-14, later the same day): the mock source file was changed and Hour0 Source Scan now returns
+'Blocked: 1 malicious source finding'. Its current text is in pr-source-scan.txt. The Source Scan text below is from the earlier mock.
+
 ## Hour0 Dependency Scan [failure] Blocked: 1 malicious dependency
 | Package | Verdict | Notes |
 |---|---|---|
