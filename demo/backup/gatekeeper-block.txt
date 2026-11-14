@@ -1,0 +1,12 @@
+$ npm install @flex-ng/filter-pipe@1.1.0
+npm error code E403
+npm error 403 403 Forbidden - GET https://registry.hour0.ai/cyrokai/@flex-ng/filter-pipe/-/filter-pipe-1.1.0.tgz - Hour0 blocked @flex-ng/filter-pipe@1.1.0  -  MALICIOUS (Trojan Packages)
+npm error 403   why it was blocked:
+npm error 403     package.json:1         Defines an install hook that automatically executes verification code during package installation.
+npm error 403     examples/verify.js:31  Fetches the host public IP address during installation to include in telemetry sent to an external server.
+npm error 403     src/index.js:7         Hardcodes an external Sentry DSN destination used for exfiltrating installation telemetry and IP data.
+npm error 403     examples/verify.js:1   Runs automatically on install (package.json 'preinstall' executes this file)
+npm error 403   details: https://platform.hour0.ai/developer-protection
+npm error 403 In most cases, you or one of your dependencies are requesting a package version that is forbidden by your security policy, or on a server you do not have access to.
+
+OK: blocked by Hour0 Gatekeeper in 11s

@@ -1,0 +1,14 @@
+## Hour0 Dependency Scan [failure] Blocked: 1 malicious dependency
+| Package | Verdict | Notes |
+|---|---|---|
+| `@flex-ng/filter-pipe@1.1.0` | ❌ MALICIOUS | This package includes a malicious preinstall script that executes a verification script upon installation. The script ga |
+
+**Result: ❌ BLOCKED** - a malicious dependency was found. This check fails, and the merge is blocked wherever it is set as a required check. ([open the GitHub Advisory page](https://platform.hour0.ai/advisory))
+## Hour0 Source Scan [action_required] Flagged (alert-only): 1 source finding
+| File | Severity | Detail |
+|---|---|---|
+| `server/src/utils/telemetry.ts` | ⚠️ SUSPICIOUS | The package contains telemetry code that reads an environment variable and a local credential file, encodes them in base64, and sends them to a non-resolving domain. Despite being described as a demo fixture, the code actively executes on load. in server/src/utils/telemetry.ts |
+
+**Result: ⚠️ flagged (alert-only)** - findings recorded in your Hour0 dashboard. ([open the GitHub Advisory page](https://platform.hour0.ai/advisory))
+## Hour0 Repo Guard [success] No suspicious repo-level changes detected
+No suspicious repo-level changes detected. ✅
