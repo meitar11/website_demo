@@ -22,11 +22,15 @@ four runs in a row: part 1 took 11 to 12 seconds, part 2 took 13 to 14 seconds, 
 | Step | You do | The audience sees |
 |---|---|---|
 | 1 | `cd demo/gatekeeper && cat .npmrc` | The project sends npm installs through `registry.hour0.ai` |
-| 2 | `npm install @flex-ng/filter-pipe@1.1.0` | `npm error 403 ... Hour0 blocked @flex-ng/filter-pipe@1.1.0 - MALICIOUS (Trojan Packages)` and four evidence lines with file and line |
-| 3 | Browser tab 2, refresh | Top row: the package, Malicious, Blocked, a few seconds ago |
-| 4 | `cd ../..` | Back in the repo root for part 2 |
+| 2 | `npm install is-number@7.0.0` | A normal package installs in about 1 second: `added 1 package`, `found 0 vulnerabilities` |
+| 3 | `npm install @flex-ng/filter-pipe@1.1.0` | `npm error 403 ... Hour0 blocked @flex-ng/filter-pipe@1.1.0 - MALICIOUS (Trojan Packages)` and four evidence lines with file and line |
+| 4 | Browser tab 2, refresh | Top rows: `@flex-ng/filter-pipe` Malicious, Blocked, and `is-number` Delivered, both a few seconds ago |
+| 5 | `cd ../..` | Back in the repo root for part 2 |
 
-Scripted version of step 2, with pass/fail checks: `./demo/run_gatekeeper.sh` from the repo root.
+The folder's `.npmrc` sets `save=false` and `package-lock=false`, so an install here never edits
+`package.json`. Both packages are answered from verdicts Hour0 already holds.
+
+Scripted version of step 3, with pass/fail checks: `./demo/run_gatekeeper.sh` from the repo root.
 
 ## Part 2 - the pull request check (about 30 seconds)
 

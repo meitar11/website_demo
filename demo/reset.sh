@@ -14,7 +14,7 @@ for N in $(gh pr list -R "$REPO" --head "$BRANCH" --state open --json number --j
 done
 
 # 2. undo demo edits left by a half-finished run, go back to main
-git checkout -q -- server/package.json 2>/dev/null || true
+git checkout -q -- server/package.json demo/gatekeeper/package.json 2>/dev/null || true
 git ls-files --error-unmatch server/src/utils/telemetry.ts >/dev/null 2>&1 || rm -f server/src/utils/telemetry.ts
 [ -z "$(git status --porcelain --untracked-files=no)" ] || fail "uncommitted changes outside the demo files - resolve them by hand"
 git checkout -q main || fail "could not check out main"
