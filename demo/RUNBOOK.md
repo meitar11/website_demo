@@ -37,9 +37,9 @@ Scripted version of step 3, with pass/fail checks: `./demo/run_gatekeeper.sh` fr
 | Step | You do | The audience sees |
 |---|---|---|
 | 1 | `./demo/run_pr.sh` | PR URL after about 5 seconds, then one line per Hour0 check as it finishes (about 14 seconds) |
-| 2 | Open the printed URL | `Hour0 Dependency Scan` failed, `Hour0 Source Scan` needs action, `Hour0 Repo Guard` passed |
+| 2 | Open the printed URL | `Hour0 Dependency Scan` failed, `Hour0 Source Scan` failed, `Hour0 Repo Guard` passed |
 | 3 | Click `Hour0 Dependency Scan` | `Blocked: 1 malicious dependency`, the package and the reason |
-| 4 | Click `Hour0 Source Scan` | `Flagged (alert-only): 1 source finding`, the file `server/src/utils/telemetry.ts` and what the code does |
+| 4 | Click `Hour0 Source Scan` | `Blocked: 1 malicious source finding`, the file `server/src/utils/telemetry.ts`, what the code does, and `Confirmed on second review` |
 | 5 | Optional: Files changed tab | The one-line dependency change and the mock file |
 | 6 | Optional: browser tab 3 | The same run in the Hour0 dashboard |
 
@@ -63,8 +63,13 @@ The pull request adds `@flex-ng/filter-pipe` 1.1.0 to `server/package.json` and 
 
 - The dependency is a real package that npm has since removed. Hour0 blocks it from the verdict it
   recorded when it scanned the package. It is not being scanned again live.
-- The pull request is blocked by the dependency. The mock source file is flagged for review, not blocked.
+- Both the dependency and the mock source file are rated malicious, and both checks fail. Measured
+  on 2026-11-14: the source check returned malicious in 5 of 5 runs. The same code pointed at a
+  `.invalid` host is rated suspicious instead, because Hour0 treats a placeholder host as a payload
+  that is not armed yet.
 - The mock file is harmless: it reads one placeholder env var and one placeholder file from
-  `demo/fixtures/`, and its only network call goes to a `.invalid` host that cannot resolve.
+  `demo/fixtures/`, and its only network call names a host that can never exist: one part of the name is 69 characters,
+  over the 63-character limit of DNS, so no lookup and no connection can happen. The file's own
+  comment only says it is a demo fixture; the full explanation is here, not in the file.
 - `demo/gatekeeper/.npmrc` sets `ignore-scripts=true`, so nothing from a package would run even if
   an install went through.

