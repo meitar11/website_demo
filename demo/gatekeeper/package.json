@@ -1,0 +1,6 @@
+{
+  "name": "hour0-gatekeeper-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Empty project used to show an install going through the Hour0 Gatekeeper registry."
+}
