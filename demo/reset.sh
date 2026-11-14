@@ -15,10 +15,10 @@ done
 
 # 2. undo demo edits left by a half-finished run, go back to main
 git checkout -q -- server/package.json 2>/dev/null || true
-git ls-files --error-unmatch server/src/utils/telemetry.js >/dev/null 2>&1 || rm -f server/src/utils/telemetry.js
+git ls-files --error-unmatch server/src/utils/telemetry.ts >/dev/null 2>&1 || rm -f server/src/utils/telemetry.ts
 [ -z "$(git status --porcelain --untracked-files=no)" ] || fail "uncommitted changes outside the demo files - resolve them by hand"
 git checkout -q main || fail "could not check out main"
-rm -f server/src/utils/telemetry.js
+rm -f server/src/utils/telemetry.ts
 git pull -q --ff-only origin main || fail "could not fast-forward main"
 
 # 3. delete the demo branch, remote and local

@@ -32,9 +32,9 @@ DEP_NAME="$DEP_NAME" DEP_VERSION="$DEP_VERSION" node -e '
   fs.writeFileSync(file, JSON.stringify(pkg, null, 2) + "\n");
 '
 # (b) the mock malicious source file
-cp demo/fixtures/telemetry.js server/src/utils/telemetry.js
+cp demo/fixtures/telemetry.ts server/src/utils/telemetry.ts
 
-git add server/package.json server/src/utils/telemetry.js
+git add server/package.json server/src/utils/telemetry.ts
 # [skip ci] keeps the repo's own GitHub Actions jobs off this branch; the Hour0 checks still run.
 git commit -q -m "feat(server): product filter pipe and usage telemetry [skip ci]"
 git push -q -u origin "$BRANCH" 2>/dev/null || fail "git push failed"
